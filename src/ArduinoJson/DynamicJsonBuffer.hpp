@@ -73,9 +73,9 @@ class DynamicJsonBufferBase
   void clear() {
     Block* currentBlock = _head;
     while (currentBlock != NULL) {
+      _nextBlockCapacity = currentBlock->capacity;
       Block* nextBlock = currentBlock->next;
       _allocator.deallocate(currentBlock);
-      _nextBlockCapacity = currentBlock->capacity;
       currentBlock = nextBlock;
     }
     _head = 0;
